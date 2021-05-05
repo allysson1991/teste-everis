@@ -1,0 +1,25 @@
+<aura:component implements="force:hasRecordId,flexipage:availableForRecordHome">
+
+    <aura:attribute name="accountRecord" type="Object"/>
+    <aura:attribute name="recordLoadError" type="String"/>
+
+    <force:recordData aura:id="recordLoader"
+    recordId="{!v.recordId}"
+    fields="Name,Description,Phone,Industry"
+    targetFields="{!v.accountRecord}"
+    targetError="{!v.recordLoadError}"
+    />
+    
+    <div> 
+        <lightning:card iconName="standard:account" title="{!v.accountRecord.Name}" >
+            <lightning:recordEditForm recordId="{!v.recordId}" objectApiName="Account">
+                <lightning:messages />
+                <lightning:inputField fieldName="Name" />
+                <lightning:inputField fieldName="AccountNumber" />
+                <lightning:inputField fieldName="Type" />
+                <lightning:button class="slds-m-top_small" variant="brand" type="submit" name="update" label="Atualizar" />
+            </lightning:recordEditForm>
+        </lightning:card>
+    </div>
+
+</aura:component>
